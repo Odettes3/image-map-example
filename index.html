@@ -9,30 +9,68 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play image map example.</tw-noscript></noscript></tw-story>
-<tw-storydata name="image map example" startnode="1" creator="Twine" creator-version="2.3.13" ifid="ADA78633-A23B-42CE-A9AC-673E4F72E8AA" zoom="1" format="Harlowe" format-version="3.2.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">
+<tw-storydata name="image map example" startnode="1" creator="Twine" creator-version="2.3.13" ifid="ADA78633-A23B-42CE-A9AC-673E4F72E8AA" zoom="1" format="Harlowe" format-version="3.2.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">img {
+  width: 100%
+}
 
+.diving-board {
+animation-duration: 20s;
+        animation-name: spring;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        transform-origin: 0px 0px;
+}
+@keyframes spring {
+        from {
+          transform: rotate (0deg);
+		  
+  }
+  to {
+	transform: rotate(45deg) scale(2);
+	letter-spacing: 16px;
+	transform: translateX(10px) rotate(10deg) translateY(5px);
+transform: perspective(500px) translate(10px, 0, 20px) rotateY(3deg);
+  }
+      </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+(function (define) {
+!function(){"use strict";function r(){function e(){var r={width:u.width/u.naturalWidth,height:u.height/u.naturalHeight},a={width:parseInt(window.getComputedStyle(u,null).getPropertyValue("padding-left"),10),height:parseInt(window.getComputedStyle(u,null).getPropertyValue("padding-top"),10)};i.forEach(function(e,t){var n=0;o[t].coords=e.split(",").map(function(e){var t=1==(n=1-n)?"width":"height";return a[t]+Math.floor(Number(e)*r[t])}).join(",")})}function t(e){return e.coords.replace(/ *, */g,",").replace(/ +/g,",")}function n(){clearTimeout(d),d=setTimeout(e,250)}function r(e){return document.querySelector('img[usemap="'+e+'"]')}var a=this,o=null,i=null,u=null,d=null;"function"!=typeof a._resize?(o=a.getElementsByTagName("area"),i=Array.prototype.map.call(o,t),u=r("#"+a.name)||r(a.name),a._resize=e,u.addEventListener("load",e,!1),window.addEventListener("focus",e,!1),window.addEventListener("resize",n,!1),window.addEventListener("readystatechange",e,!1),document.addEventListener("fullscreenchange",e,!1),u.width===u.naturalWidth&&u.height===u.naturalHeight||e()):a._resize()}function e(){function t(e){e&&(!function(e){if(!e.tagName)throw new TypeError("Object is not a valid DOM element");if("MAP"!==e.tagName.toUpperCase())throw new TypeError("Expected <MAP> tag, found <"+e.tagName+">.")}(e),r.call(e),n.push(e))}var n;return function(e){switch(n=[],typeof e){case"undefined":case"string":Array.prototype.forEach.call(document.querySelectorAll(e||"map"),t);break;case"object":t(e);break;default:throw new TypeError("Unexpected data type ("+typeof e+").")}return n}}"function"==typeof define&&define.amd?define([],e):"object"==typeof module&&"object"==typeof module.exports?module.exports=e():window.imageMapResize=e(),"jQuery"in window&&(window.jQuery.fn.imageMapResize=function(){return this.filter("map").each(r).end()})}();
+}).call(window);
+	
+	
 // Harlowe Macro Framework, by Chapel; version 1.0.2
 ;!function(){"use strict";var r={major:1,minor:0,patch:2},e=[r.major,r.minor,r.patch].join(".");r.semantic=e,r=Object.freeze(r);var t=$("tw-storydata"),a=Object.freeze({name:t.attr("name"),ifid:t.attr("ifid")}),n=t.attr("format-version"),o=n.split("."),i=Object.freeze({major:o[0],minor:o[1],patch:o[2],semantic:n});window.Harlowe=window.Harlowe||{},window.Harlowe=Object.assign(window.Harlowe,{framework:r,API_ACCESS:Object.freeze({MACROS:require("macros"),STATE:require("state"),CHANGER:require("datatypes/changercommand"),ENGINE:require("engine")}),engine:i,story:a})}(),function(){"use strict";function e(r){return"number"==typeof r||"boolean"==typeof r||"string"==typeof r||null===r||Array.isArray(r)&&r.every(e)||r instanceof Set&&Array.from(r).every(e)||r instanceof Map&&Array.from(r.values()).every(e)||_changer.isPrototypeOf(r)}window.Harlowe=Object.assign(window.Harlowe,{helpers:{isSerialisable:e,isSerializable:e,arrayify:function(r,e){if(r){var t=[].slice.call(r);return void 0!==e&&(t=t.slice(e)),t}},getPassageData:function(r){var e=$('tw-passagedata[name="'+r+'"]');if(e[0])return e}}})}(),function(){"use strict";var n=window.localStorage||!1,o=Harlowe.story.ifid+"-tw-storage";function r(){try{if(!n)throw new Error("storage is inaccessible");n.setItem(o,JSON.stringify({ifid:Harlowe.story.ifid}))}catch(r){console.warn(r)}}function i(r){try{var e;if(n)return e=JSON.parse(n.getItem(o)),r&&r&&"string"==typeof r?e[r]:e;throw new Error("storage is inaccessible")}catch(r){console.warn(r)}}null==i()&&r(),Harlowe.storage={clear:r,save:function(r,e){try{if(!r||"string"!=typeof r)throw new TypeError("cannot store values without a valid storage key");if(void 0===e)throw new TypeError("cannot store undefined values");var t={};if(t[r]=e,!n)throw new Error("storage is inaccessible");var a=i();Object.assign(a,t),n.setItem(o,JSON.stringify(a))}catch(r){console.warn(r)}},load:i,remove:function(r){try{if(!r||"string"!=typeof r)throw new TypeError("cannot store values without a valid storage key");if(!n)throw new Error("storage is inaccessible");var e=i();e.hasOwnProperty(r)&&(delete e[r],n.setItem(o,JSON.stringify(e)))}catch(r){console.warn(r)}}}}(),function(){"use strict";function a(r,e,t){if(!(this instanceof a))return new a(r,e,t);this.name=r||"unknown",this.args=e||[],this.data=t||{},this.type=t&&t.type||"basic",this.fn=t&&t.fn||"handler","changer"===this.type&&("handler"===this.fn?this.instance=t&&t.instance||null:this.descriptor=t&&t.descriptor||null)}a.create=function(r,e,t){if(!r||"string"!=typeof r||!r.trim())throw new TypeError("Invalid macro name.");return e&&e instanceof Array||(e=[]),t&&"object"==typeof t||(t={type:"basic",fn:"handler"}),new a(r,e,t)},Object.assign(a.prototype,{clone:function(){return a.create(this.name,this.args,this.data)},syntax:function(){return"("+this.name+":)"},error:function(r,e){var t="Error in the "+this.syntax()+" macro: "+r;return e&&alert(t),console.warn("HARLOWE CUSTOM MACRO ERROR -> ",t),new Error(r)},typeCheck:function(r){r&&r instanceof Array||(r=Harlowe.helpers.arrayify(arguments));var n=this,o=[];if(r.forEach(function(r,e){var t=e+1,a=[];"string"==typeof r&&("any"===(a=r.includes("|")?r.split("|").map(function(r){return r.trim().toLowerCase()}):[r.trim().toLowerCase()])[0]||a.some(function(r){return typeof n.args[e]===r})||o.push("argument "+t+" should be a(n) "+a.join(" or ")))}),o.length)return n.error(o.join("; "))}}),window.Harlowe=Object.assign(window.Harlowe,{MacroContext:a})}(),function(){"use strict";var c=Harlowe.API_ACCESS.MACROS,l=Harlowe.API_ACCESS.CHANGER;window.Harlowe=Object.assign(window.Harlowe||{},{macro:function(r,e,t){if(!r||"string"!=typeof r||!r.trim())throw new TypeError("Invalid macro name.");if(!e||"function"!=typeof e)throw new TypeError("Invalid macro handler.");var a,n,o,i,s;t&&"function"==typeof t?(o=r,i=e,s=t,c.addChanger(o,function(){var r=Harlowe.helpers.arrayify(arguments,1),e=l.create(o,r),t=Harlowe.MacroContext.create(o,r,{type:"changer",fn:"handler",instance:e});return i.apply(t,r),e},function(){var r=Harlowe.helpers.arrayify(arguments),e=r.shift(),t=Harlowe.MacroContext.create(o,r,{type:"changer",fn:"changer",descriptor:e});s.apply(t,r)},c.TypeSignature.zeroOrMore(c.TypeSignature.Any))):(a=r,n=e,c.add(a,function(){var r=Harlowe.helpers.arrayify(arguments,1),e=Harlowe.MacroContext.create(a,r,{type:"basic",fn:"handler"}),t=n.apply(e,r);return null==t?"":t},c.TypeSignature.zeroOrMore(c.TypeSignature.Any)))}})}(),function(){"use strict";var t=Harlowe.API_ACCESS.STATE,e=Harlowe.API_ACCESS.ENGINE;function a(){return t.passage}window.Harlowe=Object.assign(window.Harlowe||{},{passage:a,tags:function(r){r=r||a();try{var e=Harlowe.helpers.getPassageData(r).attr("tags");return e?e.split(" "):[]}catch(r){return console.warn(r.message),[]}},goto:function(r){return e.goToPassage(r)},variable:function(r,e){if("$"!==r[0])throw new Error('cannot access variable "'+r+'"');if(r=r.substr(1),void 0!==e){if(!Harlowe.helpers.isSerialisable(e))throw new Error('The value passed to variable "'+r+'" cannot be serialized.');t.variables[r]=e}return t.variables[r]},visited:function(r){return t.passageNameVisited(r||a())},hasVisited:function(r){return 0<t.passageNameVisited(r||a())},turns:function(){return t.pastLength}})}();
-// end Harlowe Macro Framework</script><tw-passagedata pid="1" name="Jelly Fish " tags="" position="412,189" size="100,100">&lt;img src=&quot;./img/jellyfish.jpg&quot; usemap=&quot;#image-map=jellyfish&quot;&gt;
+// end Harlowe Macro Framework</script><tw-passagedata pid="1" name="Jelly Fish " tags="" position="411,189" size="100,100">&lt;img src=&quot;./img/jellyfish.jpg&quot; usemap=&quot;#jellyfish&quot;&gt;
 
 &lt;map name=&quot;jellyfish&quot;&gt;
-    &lt;area target=&quot;&quot; alt=&quot;The Head&quot; title=&quot;The Head&quot; href=&quot;&quot; coords=&quot;64,308,484,216,291,71,66,274,85,234,119,174,138,135,194,98,240,79,331,75,358,78,389,78,415,102,431,107,452,127,478,153,488,175,512,214,519,244,531,278,540,297,527,311,481,315,451,317,400,317,360,325,265,318,205,320,139,312,308,322,277,84,360,216,537,288,257,295,303,301,295,291,278,300&quot; shape=&quot;poly&quot;&gt;
-    &lt;area target=&quot;&quot; alt=&quot;Left Tentacle &quot; title=&quot;Left Tentacle &quot; href=&quot;&quot; coords=&quot;145,550,137,552,136,563,148,569,166,569,174,571,183,566,174,555,180,546,183,530,185,507,186,497,171,493,164,494,168,483,170,461,180,445,182,428,193,487,160,503,185,414,173,352,238,328,253,324,239,370,239,383,238,400,225,426,232,422,230,444,210,479,219,462,174,502,163,513,207,483,157,512,178,399,188,413,189,390,153,536,172,472,179,463&quot; shape=&quot;poly&quot;&gt;
-    &lt;area target=&quot;&quot; alt=&quot;Middle Left tentacle &quot; title=&quot;Middle Left tentacle &quot; href=&quot;&quot; coords=&quot;286,556,291,560,292,565,291,573,280,576,271,574,257,573,251,566,258,555,261,544,260,547,280,508,260,538,264,512,270,395,273,540,288,543,282,530,282,519,288,495,288,478,292,461,300,445,300,416,285,401,281,377,281,360,281,340,278,327,253,489,249,464,249,438,249,418,248,411,245,373,245,356,257,347,258,327,270,325,259,464&quot; shape=&quot;poly&quot;&gt;
+    &lt;area target=&quot;&quot; alt=&quot;The Head&quot; title=&quot;The Head&quot; href=&quot;&quot; coords=&quot;61,304,130,316,215,322,279,322,325,325,367,323,398,323,435,322,461,319,479,315,514,311,539,300,530,262,518,232,502,201,488,170,471,149,449,123,428,105,402,88,370,76,334,68,294,65,260,69,233,72,208,80,177,93,141,130,123,145,101,179&quot; shape=&quot;poly&quot;&gt;
+    &lt;area target=&quot;&quot; alt=&quot;Left Tentacle&quot; title=&quot;Left Tentacle&quot; href=&quot;&quot; coords=&quot;181,572,166,569,136,563,138,552,150,537,160,503,164,479,175,452,181,426,179,407,181,383,172,362,184,350,194,344,206,337,224,330,238,329,249,332,232,396,241,401,230,439&quot; shape=&quot;poly&quot;&gt;
+    &lt;area target=&quot;&quot; alt=&quot;Middle Left Tentacle&quot; title=&quot;Middle Left Tentacle&quot; href=&quot;&quot; coords=&quot;256,570,267,574,279,575,286,574,291,564,287,554,283,531,283,504,294,493,296,457,298,441,298,420,298,403,290,393,282,384,282,365,284,336,278,327,267,326,257,327,248,337,246,354,242,387&quot; shape=&quot;poly&quot;&gt;
+    &lt;area target=&quot;&quot; alt=&quot;Middle Right Tentacle&quot; title=&quot;Middle Right Tentacle&quot; href=&quot;&quot; coords=&quot;333,570,343,572,355,575,370,575,373,563,363,550,360,527,358,500,355,474,355,446,349,422,357,398,352,399,346,386,334,380,328,364,323,344,315,330,299,330,291,330,290,356,341,562&quot; shape=&quot;poly&quot;&gt;
+    &lt;area target=&quot;&quot; alt=&quot;Right Tentacle&quot; title=&quot;Right Tentacle&quot; href=&quot;&quot; coords=&quot;421,572,433,574,451,574,456,563,455,552,442,547,432,528,417,497,417,476,418,352,404,348,391,343,384,337,377,336,366,330,357,329,347,329,338,329,334,341,356,431&quot; shape=&quot;poly&quot;&gt;
 &lt;/map&gt;
 &lt;div style=&quot;display:none;&quot;&gt;
 [[The Head]]
 [[Left Tentacle]]
 [[Middle Left Tentacle]]
+[[Middle Right Tentacle]]
+[[Right Tentacle]]
 &lt;/div&gt;
 &lt;script&gt;
- $(&#39;area&#39;).on(click&#39;, function(e){
+ $(&#39;area&#39;).on(&#39;click&#39;, function(e){
  e.preventDefault();
  Harlowe.goto(this.alt);
  });
- &lt;/script&gt;
+ $(&#39;map&#39;).imageMapResize();
+&lt;/script&gt;
 
-</tw-passagedata><tw-passagedata pid="2" name="The Head" tags="" position="262,339" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="3" name="Left Tentacle" tags="" position="412,339" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="4" name="Middle Left Tentacle" tags="" position="562,339" size="100,100">Double-click this passage to edit it.</tw-passagedata></tw-storydata>
+</tw-passagedata><tw-passagedata pid="2" name="The Head" tags="" position="262,339" size="100,100">This is the head
+&lt;p &lt;div class=&quot;diving-board&quot;&gt;But I don&#39;t actually have a brain...&lt;/p&gt;
+
+&lt;p &lt;div class=&quot;diving-board&quot;&gt;Or a heart...&lt;/p&gt;
+
+&lt;p &lt;div class=&quot;diving-board&quot;&gt;Or bones...&lt;/p&gt;
+
+&lt;p &lt;div class=&quot;diving-board&quot;&gt;Or eyes...&lt;/p&gt;</tw-passagedata><tw-passagedata pid="3" name="Left Tentacle" tags="" position="412,339" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="4" name="Middle Left Tentacle" tags="" position="562,339" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="5" name="Middle Right Tentacle" tags="" position="235,145" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="6" name="Right Tentacle" tags="" position="599,160" size="100,100">Double-click this passage to edit it.</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">"use strict";var _slicedToArray=function(){return function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function(e,t){var n=[],r=!0,i=!1,a=void 0;try{for(var o,s=e[Symbol.iterator]();!(r=(o=s.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(e){i=!0,a=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw a}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}!function(){
 /**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
